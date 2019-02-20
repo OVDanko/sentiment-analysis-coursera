@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+  <title>Sentiment Demo</title>
+</head>
+
+<body>
+  <!-- <img src="https://www.etsu.edu/cas/art/galleries/pictures/positive_negative_banner.png" alt="sentiment" id="logo"> -->
+  <h1>Демонстрация работы алгоритма сентимент-анализа</h1>
+  
+  <section class="about">
+    <h3>Обучающая выборка:</h3>
+    <span>отзывы на смартфоны с сайта Отзовик (http://otzovik.com/technology/communication/cellular_phones/)</span>
+    <h3>Модель:</h3>
+    <ul>
+      <li>Схема n-грамм: униграммы (1,1)</li>
+      <li>Vectorizer: TF-IDF</li>
+      <li>Классификатор: LinearSVC (параметр C = 0.35)</li>
+    </ul>
+  </section>
+  
+  <section class="overlay"> 
+    <form action="{{ url_for('index_page') }}" method=post>
+        <section class="response_section">
+          <label for="text">
+            <span>Оставьте Ваш отзыв на смартфон:</span>
+          </label>
+          <br>
+		  <textarea  id="text" rows="5" cols="1" name="text" autofocus="autofocus" required>{{ text }}           
+          </textarea>          
+        </section>
+        
+        <section class="submission_section">
+          <input type=submit value="Отправить"> 
+        </section>
+        
+        <br><span style="color: {{ color }}">{{ prediction_message }}</span>
+    </form>
+  </section>
+  
+</body>
+
+</html>
+
